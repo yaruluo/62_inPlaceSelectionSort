@@ -17,22 +17,47 @@ public class OrderedList_inArraySlots
      */
     public OrderedList_inArraySlots
             ( ArrayList<Integer> unordered) {
-        this();  // violates the directions for this hw
-        
-        System.out.println( 
-            "report on progress"
-          + System.lineSeparator()
-          );
+        int x = 0;
+	while( x < unordered.size()){
+	    int index = champIndex( unordered, x);
+	    int lowest = unordered.get( index);
+	    
+	    
+	    System.out.println("report on progress:"
+			       + " swap "
+			       + unordered.get( index)
+			       + " in index "
+			       + index
+			       + " with "
+			       + unordered.get( x)
+			       + System.lineSeparator()
+			       + "updated list: " + unordered
+			       + System.lineSeparator()
+				);
+	    
+	    unordered.set( index, unordered.get(x));
+	    unordered.set( x, lowest);
+	    x++;
+	}
+	list_iAS = unordered;
     }
 
 
     /** 
       helper function for constructor
       Write good English here, reflecting good thinking.
-      @return ??
+      @return the index of the lowest value in the list, starting at start
      */
-     private int champIndex() {
-        return 0;  // replace this line
+    private int champIndex( ArrayList<Integer> challengers, int start) {
+         Integer champ = Integer.MAX_VALUE;
+	 int output = 0;
+	 for ( int index = start; index < challengers.size(); index++)
+	     if( challengers.get( index) != null)
+		 if( challengers.get( index) < champ){
+		     champ = challengers.get( index);
+		     output = index;
+		 }
+	 return output;
      }
 
 
